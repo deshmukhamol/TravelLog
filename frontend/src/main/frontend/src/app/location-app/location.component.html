@@ -1,0 +1,20 @@
+<section class="locapp">
+  <header class="header">
+    <h1>Travel Log</h1>
+   <input class="new-loc" placeholder="Add your travel location" autofocus="" [(ngModel)]="newLocation.title" (keyup.enter)="addLoc()">
+  </header>
+  <section class="main" *ngIf="Locs.length > 0">
+    <ul class="loc-list">
+      <li *ngFor="let location of Locs" [class.completed]="location.complete">
+        <div class="view">
+          <input class="toggle" type="checkbox" (click)="toggleLocComplete(location)" [checked]="location.complete">
+          <label>{{location.title}}</label>
+          <button class="destroy" (click)="removeLoc(location)"></button>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <footer class="footer" *ngIf="Locs.length > 0">
+    <span class="loc-count"><strong>{{Locs.length}}</strong> {{Locs.length == 1 ? 'item' : 'items'}}</span>
+  </footer>
+</section>
